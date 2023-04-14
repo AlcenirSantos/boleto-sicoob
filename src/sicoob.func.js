@@ -198,7 +198,7 @@ function fatorVencimento(data) {
 	var mes = data[1];
 	var dia = data[0];
 
-  return abs((_dateToDays('1997','10','07')) - (_dateToDays(ano, mes, dia)));
+  return abs((_dateToDays('2000','07','03')) - (_dateToDays(ano, mes, dia)));
 }
 
 function modulo10(num) {

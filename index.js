@@ -1,4 +1,4 @@
-var bancoob = require('./src/Sicoob');
+var sicoob = require('./src/sicoob');
 
-exports.gerarPDF  = bancoob.gerarPDF;
-exports.gerarHTML = bancoob.gerarHTML;
+exports.gerarPDF  = sicoob.gerarPDF;
+exports.gerarHTML = sicoob.gerarHTML;

@@ -3,7 +3,7 @@
 var q    = require('q');
 var pdf  = require('html-pdf');
 var swig = require('swig');
-var fnc  = require('./bacoob.func');
+var fnc  = require('./sicoob.func');
 
 var fbarcode = fnc.fbarcode;
 var modulo11 = fnc.modulo11;
@@ -17,7 +17,7 @@ var geraCodigoBanco = fnc.geraCodigoBanco;
 var montaNossoNumero = fnc.montaNossoNumero;
 var montaLinhaDigitavel = fnc.montaLinhaDigitavel;
 
-var bancoob = {
+var sicoob = {
   gerarHTML: function(boletoArgs, configArgs) {
     return q.Promise(function(resolve) {
       var $taxaBoleto   = boletoArgs.boletoTaxa;
@@ -128,7 +128,7 @@ var bancoob = {
       $dadosBoleto.fbarcode       = fbarcode($dadosBoleto.codigoBarras);
       $dadosBoleto.imgBanco       = 'data:image/png;base64,'.concat(base64Encode(arquivoImagemBanco));
 
-      var templateBancoob = __dirname + '/bancoob.swig';
+      var templateBancoob = __dirname + '/sicoob.swig';
 
       var html = swig.renderFile(templateBancoob, { dadosBoleto: $dadosBoleto });
 
@@ -153,10 +153,10 @@ var bancoob = {
       bottom: '2.0in'
     };
 
-    return bancoob.gerarHTML(boletoArgs, configArgs).then(function(boletoHtml) {
+    return sicoob.gerarHTML(boletoArgs, configArgs).then(function(boletoHtml) {
       return pdf.create(boletoHtml, pdfOptions);
     });
   }
 };
 
-module.exports = bancoob;
+module.exports = sicoob;
