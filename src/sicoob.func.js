@@ -37,7 +37,7 @@ function round(val) {
 }
 
 function substr(string, ini, fim) {
-  return String(string).substr(ini, fim);
+  return String(string).substring(ini, fim);
 }
 
 function esquerda(entra, comp){

@@ -118,7 +118,7 @@ var sicoob = {
       var $dv          = modulo11($calcMd11);
       var $linha       = String($codigoBanco).concat($nummoeda, $dv, $fatorVencimento, $valor, $carteira, $agencia, $campolivre);
 
-      var arquivoImagemBanco = __dirname + '/imagens/sicoob-banner.png';
+      var arquivoImagemBanco = __dirname + '/imagens/sicoob-banner.jpg';
 
       $dadosBoleto.codigoBarras   = $linha;
       $dadosBoleto.linhaDigitavel = montaLinhaDigitavel($linha);
