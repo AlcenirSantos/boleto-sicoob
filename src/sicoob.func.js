@@ -152,7 +152,6 @@ function fbarcode(valor) {
       }else{
         f2 = largo ;
       }
-
       barra += '<img src="' + srcBarraBranca + '" width="' + String(f2) + '" height="' + String(altura) + '" border="0" />';
     }
   }

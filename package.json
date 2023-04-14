@@ -18,10 +18,10 @@
     "url": "https://github.com/AlcenirSantos/boleto-sicoob/issues"
   },
   "dependencies": {
-    "q": "^1.5.1",
+    "q": "^1.4.1",
     "swig": "^1.4.2",
     "html-pdf": "^1.4.0",
     "accounting": "^0.4.1",
-    "moment-timezone": "^0.5.43"
+    "moment-timezone": "^0.4.1"
   }
 }
