@@ -341,8 +341,11 @@
           color: black;
         }
         div.barcode {
-          width: 800px;
+          width: 408px;
           margin-bottom: 20px;
+        }
+        div.cut{
+          margin-top: 4px;
         }
       }
       @media print {

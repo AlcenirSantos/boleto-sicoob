@@ -1,0 +1,897 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" dir="ltr" lang="pt-br">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CooabrielTech.</title>
+    <style type="text/css">
+      <!--
+				.ti {font: 9px Arial, Helvetica, sans-serif}
+			-->
+    </style>
+
+       <style>
+      @media screen, print {
+        /* *** TIPOGRAFIA BASICA *** */
+        * {
+          font-family: Arial;
+          font-size: 12px;
+          margin: 0;
+          padding: 0;
+        }
+        .notice {
+          color: red;
+        } /* *** LINHAS GERAIS *** */
+        #container {
+          width: 800px;
+          margin: 0px auto;
+          padding-bottom: 30px;
+        }
+        #instructions {
+          margin: 0;
+          padding: 0 0 20px 0;
+        }
+        #boleto {
+          width: 800px;
+          margin: 0 auto;
+          padding: 0;
+        } /* *** CABECALHO ***
+      */
+        #instr_header {
+          height: 65px;
+        }
+        #instr_header h1 {
+          font-size: 16px;
+          margin: 5px 0px;
+        }
+        #instr_header address {
+          font-style: normal;
+        }
+        #instr_content {
+        }
+        #instr_content h2 {
+          font-size: 10px;
+          font-weight: bold;
+        }
+        #instr_content p {
+          font-size: 10px;
+          margin: 4px 0px;
+        }
+        #instr_content ol {
+          font-size: 10px;
+          margin: 5px 0;
+        }
+        #instr_content ol li {
+          font-size: 10px;
+          text-indent: 10px;
+          margin: 2px 0px;
+          list-style-position: inside;
+        }
+        #instr_content ol li p {
+          font-size: 10px;
+          padding-bottom: 4px;
+        } /* ***
+      BOLETO *** */
+        #boleto .cut {
+          width: 800px;
+          margin: 0px auto;
+          border-bottom: 1px black dashed;
+        }
+        #boleto .cut p {
+          margin: 0 0 5px 0;
+          padding: 0px;
+          font-family: "Arial Narrow";
+          font-size: 9px;
+          color: black;
+        }
+        table.header {
+          width: 800px;
+          height: 38px;
+          margin-top: 20px;
+          margin-bottom: 10px;
+          border-bottom: 2px black solid;
+        }
+        table.header div.field_cod_banco {
+          width: 46px;
+          height: 19px;
+          margin-left: 5px;
+          padding-top: 3px;
+          text-align: center;
+          font-size: 14px;
+          font-weight: bold;
+          color: black;
+          border-right: 2px solid black;
+          border-left: 2px solid black;
+        }
+        table.header td.linha_digitavel {
+          width: 464px;
+          text-align: right;
+          font: bold 15px Arial;
+          color: black;
+        }
+        table.line {
+          margin-bottom: 3px;
+          padding-bottom: 1px;
+          border-bottom: 1px black solid;
+        }
+        table.line tr.titulos td {
+          height: 13px;
+          font-family: "Arial Narrow";
+          font-size: 9px;
+          color: black;
+          border-left: 5px #000000 solid;
+          padding-left: 2px;
+        }
+        table.line tr.campos td {
+          height: 12px;
+          font-size: 10px;
+          color: black;
+          border-left: 5px #000000 solid;
+          padding-left: 2px;
+        }
+        table.line td p {
+          font-size: 10px;
+        }
+        table.line tr.campos td.ag_cod_cedente,
+        table.line tr.campos td.nosso_numero,
+        table.line tr.campos td.valor_doc,
+        table.line tr.campos td.vencimento2,
+        table.line tr.campos td.ag_cod_cedente2,
+        table.line tr.campos td.nosso_numero2,
+        table.line tr.campos td.xvalor,
+        table.line tr.campos td.valor_doc2 {
+          text-align: right;
+        }
+        table.line tr.campos td.especie,
+        table.line tr.campos td.qtd,
+        table.line tr.campos td.vencimento,
+        table.line tr.campos td.especie_doc,
+        table.line tr.campos td.aceite,
+        table.line tr.campos td.carteira,
+        table.line tr.campos td.especie2,
+        table.line tr.campos td.qtd2 {
+          text-align: center;
+        }
+        table.line td.last_line {
+          vertical-align: top;
+          height: 25px;
+        }
+        table.line td.last_line table.line {
+          margin-bottom: -5px;
+          border: 0 white none;
+        }
+        td.last_line table.line td.instrucoes {
+          border-left: 0 white none;
+          padding-left: 5px;
+          padding-bottom: 0;
+          margin-bottom: 0;
+          height: 20px;
+          vertical-align: top;
+        }
+        table.line td.cedente {
+          width: 334px;
+        }
+        table.line td.valor_cobrado2 {
+          padding-bottom: 0;
+          margin-bottom: 0;
+        }
+        table.line td.ag_cod_cedente {
+          width: 140px;
+        }
+        table.line td.especie {
+          width: 62px;
+        }
+        table.line td.qtd {
+          width: 80px;
+        }
+        table.line td.nosso_numero {
+          /* width: 120px; */
+          width: 168.8px;
+          padding-right: 5px;
+        }
+        table.line td.num_doc {
+          width: 148px;
+        }
+        table.line td.contrato {
+          width: 98.8px;
+        }
+        table.line td.cpf_cei_cnpj {
+          width: 158.8px;
+        }
+        table.line td.vencimento {
+          width: 150.8px;
+        }
+        table.line td.valor_doc {
+          width: 203px;
+          padding-right: 5px;
+        }
+        table.line td.desconto {
+          width: 146px;
+        }
+        table.line td.outras_deducoes {
+          width: 146px;
+        }
+        table.line td.mora_multa {
+          width: 146px;
+        }
+        table.line td.outros_acrescimos {
+          width: 146px;
+        }
+        table.line td.valor_cobrado {
+          width: 200px;
+          padding-right: 5px;
+          background-color: #ffc;
+        }
+        table.line td.sacado {
+          width: 800px;
+        }
+        table.line td.local_pagto {
+          width: 606px;
+        }
+        table.line td.vencimento2 {
+          /* width: 180px; */
+          width: 178.5px;
+          padding-right: 5px;
+          background-color: #ffc;
+        }
+        table.line td.cedente2 {
+          width: 606px;
+        }
+        table.line td.ag_cod_cedente2 {
+          /* width: 180px; */
+          width: 178.5px;
+          padding-right: 5px;
+        }
+        table.line td.data_doc {
+          width: 130px;
+        }
+        table.line td.num_doc2 {
+          width: 200px;
+        }
+        table.line td.especie_doc {
+          width: 100px;
+        }
+        table.line td.aceite {
+          width: 58px;
+        }
+        table.line td.data_process {
+          width: 100px;
+        }
+        table.line td.nosso_numero2 {
+          /* width: 180px; */
+          width: 182px;
+          padding-right: 5px;
+        }
+        table.line td.reservado {
+          width: 132px;
+          background-color: #ffc;
+        }
+        table.line td.carteira {
+          width: 120px;
+        }
+        table.line td.especie2 {
+          width: 70px;
+        }
+        table.line td.qtd2 {
+          width: 150px;
+        }
+        table.line td.xvalor {
+          /* width: 72px; */
+          width: 100px;
+          padding-right: 5px;
+        }
+        table.line td.valor_doc2 {
+          /* width: 180px; */
+          width: 177.8px;
+          padding-right: 5px;
+        }
+        table.line td.instrucoes {
+          width: 606px;
+        }
+        table.line td.desconto2 {
+          /* width: 180px; */
+          width: 175px;
+          padding-right: 5px;
+        }
+        table.line td.outras_deducoes2 {
+          /* width:
+      180px; */
+          width: 175px;
+          padding-right: 5px;
+        }
+        table.line td.mora_multa2 {
+          /* width: 180px; */
+          width: 175px;
+          padding-right: 5px;
+        }
+        table.line td.outros_acrescimos2 {
+          /* width: 180px; */
+          width: 175px;
+          padding-right: 5px;
+        }
+        table.line td.valor_cobrado2 {
+          /* width: 180px; */
+          width: 175px;
+          padding-right: 5px;
+          background-color: #ffc;
+        }
+        table.line td.sacado2 {
+          width: 800px;
+        }
+        table.line td.sacador_avalista {
+          width: 800px;
+        }
+        table.line tr.campos td.sacador_avalista {
+          width: 606px;
+        }
+        table.line td.cod_baixa {
+          color: black;
+          width: 180px;
+        }
+        div.footer {
+          margin-bottom: 30px;
+        }
+        div.footer p {
+          width: 88px;
+          margin: 0;
+          padding: 0;
+          padding-left: 525px;
+          font-family: "Arial Narro";
+          font-size: 9px;
+          color: black;
+        }
+        div.barcode {
+          width: 408px;
+          margin-bottom: 20px;
+        }
+        div.cut{
+          margin-top: 4px;
+        }
+      }
+      @media print {
+        #instructions {
+          height: 1px;
+          visibility: hidden;
+          overflow: hidden;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="boleto">
+        <div class="cut">
+          <p>Corte na linha pontilhada</p>
+        </div>
+
+        <table class="header" border=0 cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td width=150>
+                <img src="data:image/png;base64,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" />
+              </td>
+              <td width=50>
+                <div class="field_cod_banco">
+                  756-0
+                </div>
+              </td>
+
+              <td class="linha_digitavel">
+                7569130078010108878256193470008000000
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="line" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr class="titulos">
+              <td class="cedente">Cedente</td>
+              <td class="ag_cod_cedente">Ag&ecirc;ncia / C&oacute;digo do Cedente</td>
+              <td class="especie">Esp&eacute;cie</td>
+              <td class="qtd">Quantidade</td>
+              <td class="nosso_numero">Nosso n&uacute;mero</td>
+            </tr>
+
+            <tr class="campos">
+              <td class="cedente">COOPERATIVA AGRARIA DOS CAFEICULTORES DE SAO GABRI&nbsp;</td>
+              <td class="ag_cod_cedente">3007 / 0108782 &nbsp;</td>
+              <td class="especie">R$&nbsp;</td>
+              <td class="qtd">&nbsp;</td>
+              <td class="nosso_numero">36090025&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="line" cellspacing="0" cellPadding="0">
+          <tbody>
+            <tr class="titulos">
+              <td class="num_doc">N&uacute;mero do documento</td>
+              <td class="contrato">Contrato</td>
+              <td class="cpf_cei_cnpj">CPF/CEI/CNPJ</td>
+              <td class="vencmento">Vencimento</td>
+              <td class="valor_doc">Valor documento</td>
+            </tr>
+
+            <tr class="campos">
+              <td class="num_doc">57-20-3188/1</td>
+              <td class="contrato"></td>
+              <td class="cpf_cei_cnpj">27494152000144</td>
+              <td class="vencimento">11/05/2023</td>
+              <td class="valor_doc">800,00</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="line" cellspacing="0" cellPadding="0">
+          <tbody>
+            <tr class="titulos">
+              <td class="desconto">(-) Desconto / Abatimento</td>
+              <td class="outras_deducoes">(-) Outras dedu&ccedil;&otilde;es</td>
+              <td class="mora_multa">(+) Mora / Multa</td>
+              <td class="outros_acrescimos">(+) Outros acr&eacute;scimos</td>
+              <td class="valor_cobrado">(=) Valor cobrado</td>
+            </tr>
+
+            <tr class="campos">
+              <td class="desconto">&nbsp;</td>
+              <td class="outras_deducoes">&nbsp;</td>
+              <td class="mora_multa">&nbsp;</td>
+              <td class="outros_acrescimos">&nbsp;</td>
+              <td class="valor_cobrado">&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="line" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr class="titulos">
+              <td class="sacado">Sacado</td>
+            </tr>
+
+            <tr class="campos">
+              <td class="sacado">RENATO VALENTIM VIEIRA BIANCHINE E OUTROS</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="footer">
+          <p>Autentica&ccedil;&atilde;o mec&acirc;nica</p>
+        </div>
+
+        <div class="cut">
+          <p>Corte na linha pontilhada</p>
+        </div>
+
+        <table class="header" border=0 cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td width="150"><img src="data:image/png;base64,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" /></td>
+              <td width="50"><div class="field_cod_banco">756-0</div></td>
+              <td class="linha_digitavel">7569130078010108878256193470008000000</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="line" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr class="titulos">
+              <td class="local_pagto">Local de pagamento</td>
+              <td class="vencimento2">Vencimento</td>
+            </tr>
+
+            <tr class="campos">
+              <td class="local_pagto">QUALQUER BANCO AT&Eacute; O VENCIMENTO</td>
+              <td class="vencimento2">11/05/2023</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="line" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr class="titulos">
+              <td class="cedente2">Cedente</td>
+              <td class="ag_cod_cedente2">Ag&ecirc;ncia/C&oacute;digo cedente</td>
+            </tr>
+
+            <tr class="campos">
+              <td class="cedente2">COOPERATIVA AGRARIA DOS CAFEICULTORES DE SAO GABRI</td>
+              <td class="ag_cod_cedente2">3007 / 0108782</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="line" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr class="titulos">
+              <td class="data_doc">Data do documento</td>
+              <td class="num_doc2">No. documento</td>
+              <td class="especie_doc">Esp&eacute;cie doc.</td>
+              <td class="aceite">Aceite</td>
+              <td class="data_process">Data process.</td>
+              <td class="nosso_numero2">Nosso n&uacute;mero</td>
+            </tr>
+
+            <tr class="campos">
+              <td class="data_doc">11/04/2023</td>
+              <td class="num_doc2">57-20-3188/1</td>
+              <td class="especie_doc">DUP</td>
+              <td class="aceite">N</td>
+              <td class="data_process">11/04/2023</td>
+              <td class="nosso_numero2">36090025</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="line" cellspacing="0" cellPadding="0">
+          <tbody>
+            <tr class="titulos">
+              <td class="reservado">Uso do banco</td>
+              <td class="carteira">Carteira</td>
+              <td class="especie2">Esp&eacute;cie</td>
+              <td class="qtd2">Quantidade</td>
+              <td class="xvalor">x Valor</td>
+              <td class="valor_doc2">(=) Valor documento</td>
+            </tr>
+
+            <tr class="campos">
+              <td class="reservado">&nbsp;</td>
+              <td class="carteira">1 &nbsp;</td>
+              <td class="especie2">R$</td>
+              <td class="qtd2"></td>
+              <td class="xvalor"></td>
+              <td class="valor_doc2">800,00</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="line" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td class="last_line" rowspan="6">
+                <table class="line" cellspacing="0" cellpadding="0">
+                  <tbody>
+                    <tr class="titulos">
+                      <td class="instrucoes">Instru&ccedil;&otilde;es (Texto de responsabilidade do cedente)</td>
+                    </tr>
+
+                    <tr class="campos">
+                      <td class="instrucoes" rowspan="5"><p>Após 10/06/2023 cobrar Multa de R$ 2</p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <table class="line" cellspacing="0" cellpadding="0">
+                  <tbody>
+                    <tr class="titulos">
+                      <td class="desconto2">(-) Desconto / Abatimento</td>
+                    </tr>
+                    <tr class="campos">
+                      <td class="desconto2">&nbsp;</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <table class="line" cellspacing="0" cellpadding="0">
+                  <tbody>
+                    <tr class="titulos">
+                      <td class="outras_deducoes2">(-) Outras dedu&ccedil;&otilde;es</td>
+                    </tr>
+                    <tr class="campos">
+                      <td class="outras_deducoes2">&nbsp;</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <table class="line" cellspacing="0" cellpadding="0">
+                  <tbody>
+                    <tr class="titulos">
+                      <td class="mora_multa2">(+) Mora / Multa</td>
+                    </tr>
+                    <tr class="campos">
+                      <td class="mora_multa2">&nbsp;</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <table class="line" cellspacing="0" cellpadding="0">
+                  <tbody>
+                    <tr class="titulos">
+                      <td class="outros_acrescimos2">(+) Outros Acr&eacute;scimos</td>
+                    </tr>
+
+                    <tr class="campos">
+                      <td class="outros_acrescimos2">
+                        &nbsp;
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="last_line">
+                <table class="line" cellspacing="0" cellpadding="0">
+                  <tbody>
+                    <tr class="titulos">
+                      <td class="valor_cobrado2">(=) Valor cobrado</td>
+                    </tr>
+
+                    <tr class="campos">
+                      <td class="valor_cobrado2">
+                        &nbsp;
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="line" cellspacing="0" cellPadding="0">
+          <tbody>
+            <tr class="titulos">
+              <td class="sacado2">Sacado</td>
+            </tr>
+
+            <tr class="campos">
+              <td class="sacado2">
+                <p>RENATO VALENTIM VIEIRA BIANCHINE E OUTROS</p>
+                <p>ROD. ROBERTO CALMON, Zona Rural</p>
+                <p>Linhares - ES - 29900820</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="line" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr class="titulos">
+              <td class="sacador_avalista" colspan="2">Sacador/Avalista</td>
+            </tr>
+            <tr class="campos">
+              <td class="sacador_avalista">&nbsp;</td>
+              <td class="cod_baixa">C&oacute;d. baixa</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="footer">
+          <p>Autentica&ccedil;&atilde;o mec&acirc;nica</p>
+        </div>
+
+        <div class="barcode">
+          <p><svg viewBox="0 0 1096 150">
+  <rect y="0" height="100%" fill="#000" width="4" x="0"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="4"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="8"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="12"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="16"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="20"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="28"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="32"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="36"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="40"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="48"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="56"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="60"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="68"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="72"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="76"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="80"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="88"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="96"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="104"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="108"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="112"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="120"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="124"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="128"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="136"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="144"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="148"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="156"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="160"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="164"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="168"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="172"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="180"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="184"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="188"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="192"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="196"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="200"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="208"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="216"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="224"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="232"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="236"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="240"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="244"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="252"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="256"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="260"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="264"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="268"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="276"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="284"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="292"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="296"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="300"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="308"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="312"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="316"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="324"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="328"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="336"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="340"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="344"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="352"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="356"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="364"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="368"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="372"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="380"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="384"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="392"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="396"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="400"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="408"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="412"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="420"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="424"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="428"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="436"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="440"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="448"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="456"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="460"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="464"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="472"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="476"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="480"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="484"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="488"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="492"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="500"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="508"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="512"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="520"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="528"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="532"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="536"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="544"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="548"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="552"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="560"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="564"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="568"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="576"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="584"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="588"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="592"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="600"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="608"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="616"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="620"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="624"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="628"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="632"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="640"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="644"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="648"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="656"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="660"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="664"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="668"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="676"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="684"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="688"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="696"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="700"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="708"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="712"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="716"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="724"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="728"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="732"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="736"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="744"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="748"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="752"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="756"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="760"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="764"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="772"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="780"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="788"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="796"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="800"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="804"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="808"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="812"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="816"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="824"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="832"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="840"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="848"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="852"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="856"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="864"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="868"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="872"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="876"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="880"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="888"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="896"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="904"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="908"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="912"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="916"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="920"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="924"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="928"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="936"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="944"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="952"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="960"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="964"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="968"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="972"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="976"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="980"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="984"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="992"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="1000"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="1008"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="1016"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="1020"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="1024"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="1028"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="1032"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="1036"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="1040"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="1048"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="1056"></rect>
+  <rect y="0" height="100%" fill="#fff" width="8" x="1064"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="1072"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="1076"></rect>
+  <rect y="0" height="100%" fill="#000" width="8" x="1080"></rect>
+  <rect y="0" height="100%" fill="#fff" width="4" x="1088"></rect>
+  <rect y="0" height="100%" fill="#000" width="4" x="1092"></rect>
+</svg></p>
+        </div>
+
+        <div class="cut">
+          <p>Corte na linha pontilhada</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
